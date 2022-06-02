@@ -1,5 +1,6 @@
 package com.example.examen202;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -32,6 +33,14 @@ public class MyDatabase extends SQLiteOpenHelper {
         String sql= "DROP TABLE " + table;
         sqLiteDatabase.execSQL(sql);
         onCreate(sqLiteDatabase);
+
+    }
+    public static long AddEntreprise(SQLiteDatabase sqLiteDatabase, Entreprise e){
+        ContentValues ct=new ContentValues();
+        ct.put(col2,e.getRaison());
+        ct.put(col3,e.getAdresse());
+        ct.put(col4,e.getCapital());
+        return sqLiteDatabase.insert(table,null,ct);
 
     }
 }
